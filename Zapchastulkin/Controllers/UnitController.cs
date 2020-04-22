@@ -8,7 +8,7 @@ using Zapchastulkin.Models;
 namespace Zapchastulkin.Controllers
 {
     [ApiController]
-    [Route("api/categories")]
+    [Route("api/units")]
     public class UnitController : Controller
     {
         ApplicationContext db;
@@ -22,11 +22,11 @@ namespace Zapchastulkin.Controllers
             return db.Units.ToList();
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<Unit>>> Get(int id)
+        [HttpGet("{categoryId}")]
+        public async Task<ActionResult<IEnumerable<Unit>>> Get(int categoryId)
         {
             var units = await db.Categories
-                .Where(x => x.Id == id)
+                .Where(x => x.Id == categoryId)
                 .Select(x => x.Units)
                 .ToListAsync();
             if (units != null && units.Count != 0)

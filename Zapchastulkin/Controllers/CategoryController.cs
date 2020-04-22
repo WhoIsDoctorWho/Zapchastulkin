@@ -8,12 +8,12 @@ using Zapchastulkin.Models;
 namespace Zapchastulkin.Controllers
 {
     [ApiController]
-    [Route("api/categories")]
+    [Route("api/categories")]    
     public class CategoryController : Controller
     {
         ApplicationContext db;
         public CategoryController(ApplicationContext context)
-        {
+        {            
             db = context;
         }
         [HttpGet]
@@ -22,10 +22,11 @@ namespace Zapchastulkin.Controllers
             return await db.Categories.ToListAsync();
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int cid)
+        [HttpGet("{categoryId}")]
+        public IActionResult Get(int categoryId)
         {
-            return RedirectToRoutePermanent("~/api/units", new { id = cid });
+            return LocalRedirectPermanent($"~/api/units?categoryId={categoryId}");
+            //return RedirectToRoutePermanent("~/api/units", categoryId);
         }
 
         [HttpPost]

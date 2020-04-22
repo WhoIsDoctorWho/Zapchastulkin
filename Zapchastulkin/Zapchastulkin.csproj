@@ -17,7 +17,7 @@
   <None Remove="ClientApp\src\app\models\category.ts" />
   <None Remove="ClientApp\src\app\models\product.ts" />
   <None Remove="ClientApp\src\app\models\unit.ts" />
-</ItemGroup>
+</ItemGroup> 
    
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" /><PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />

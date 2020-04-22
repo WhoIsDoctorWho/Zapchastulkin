@@ -1,0 +1,16 @@
+﻿<div class="text-center">
+    <h1 class="my-4">Список категорий</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 card" *ngFor="let p of categories">
+                <h1>
+                    <a [routerLink]="['categories', p.id]" class="stretched-link text-decoration-none text-reset">
+                        {{p?.name}}
+                    </a>
+                </h1>
+                <img src={{p?.imageUrl}} alt="category image" class="img-fluid rounded" style="margin:0 auto;" />                
+            </div>
+        </div>
+    </div>
+    <a routerLink="/create" class="btn btn-green">Добавить</a>
+</div>   

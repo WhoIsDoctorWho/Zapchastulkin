@@ -16,7 +16,7 @@ export class DataService {
         return this.http.get(this.url);
     }
     getCategory(id: number) {
-        return this.http.get(this.http + '/' + id);
+        return this.http.get(this.url+ '/' + id);
     }
 
     //getProducts() {

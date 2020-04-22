@@ -12,7 +12,7 @@ namespace Zapchastulkin
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = "Server=(localdb)\\mssqllocaldb;Database=productsdb;Trusted_Connection=True;";
+            string connectionString = "Server=(localdb)\\mssqllocaldb;Database=zapchastulkindb;Trusted_Connection=True;";
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 
             services.AddControllers();
