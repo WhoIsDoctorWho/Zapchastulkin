@@ -2,14 +2,14 @@
     <h1 class="my-4">Список узлов</h1>
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-4 card" *ngFor="let p of units">
+            <div class="col-sm-12 col-md-6 col-lg-4 card" *ngFor="let p of products">
                 <h1>
-                    <a [routerLink]="['/units', p.id]" class="stretched-link text-decoration-none text-reset">
+                    <a [routerLink]="['/products', p.id]" class="stretched-link text-decoration-none text-reset">
                         {{p?.name}}
                     </a>
                 </h1>
                 <img src={{p?.imageUrl}} alt="category image" class="img-fluid rounded" style="margin:0 auto;" />
             </div>
         </div>
-    </div>    
+    </div>
 </div>   

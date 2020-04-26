@@ -23,10 +23,12 @@ namespace Zapchastulkin.Controllers
         }
 
         [HttpGet("{categoryId}")]
-        public IActionResult Get(int categoryId)
-        {
-            return LocalRedirectPermanent($"~/api/units?categoryId={categoryId}");
-            //return RedirectToRoutePermanent("~/api/units", categoryId);
+        public async Task<ActionResult<IEnumerable<Unit>>> Get(int categoryId)
+        {           
+            var units = (await db.Categories.FirstAsync(x => x.Id == categoryId)).Units;
+            if (units == null || units.Count == 0)
+                units = await db.Units.ToListAsync();
+            return Ok(units);            
         }
 
         [HttpPost]

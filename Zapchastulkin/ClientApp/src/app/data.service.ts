@@ -1,22 +1,25 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Category } from './models/category';
-import { Unit } from './models/unit';
-import { Product } from './models/product';
 
 @Injectable()
 export class DataService {
 
-    private url = "/api/categories";
+    private api = "/api";
 
     constructor(private http: HttpClient) {
     }
 
     getCategories() {
-        return this.http.get(this.url);
+        return this.http.get(this.api + '/categories');
     }
-    getCategory(id: number) {
-        return this.http.get(this.url+ '/' + id);
+    getUnits(categoryId: number) {
+        return this.http.get(this.api + '/categories/' + categoryId);
+    }
+    getProducts(unitId: number) {
+        return this.http.get(this.api + '/units/' + unitId);
+    }
+    getProduct(productId: number) {
+        return this.http.get(this.api + '/products/' + productId);
     }
 
     //getProducts() {

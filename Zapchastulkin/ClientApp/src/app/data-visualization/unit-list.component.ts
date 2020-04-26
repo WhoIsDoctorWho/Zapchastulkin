@@ -9,14 +9,16 @@ import { Unit } from '../models/unit';
     providers: [DataService]
 })
 export class UnitListComponent implements OnInit {
-
+    categoryId: number;
     units: Unit[];
-    constructor(private dataService: DataService) { }
+    loaded: boolean = false;
 
+    constructor(private dataService: DataService, private router: Router, activeRoute: ActivatedRoute) {
+        this.categoryId = Number.parseInt(activeRoute.snapshot.params["id"]);
+    }    
     ngOnInit() {
-        this.load();
-    }
-    load() {
-        this.dataService.getCategory(1).subscribe((data: Unit[]) => this.units = data); // @todo
-    }
+        if (this.categoryId)
+            this.dataService.getUnits(this.categoryId)
+                .subscribe((data: Unit[]) => { this.units = data; this.loaded = true; });
+    }    
 } 

@@ -15,24 +15,20 @@ namespace Zapchastulkin.Controllers
         public UnitController(ApplicationContext context)
         {
             db = context;
-        }
-        [HttpGet]
-        public IEnumerable<Unit> Get()
+        }        
+        [HttpGet("{unitId}")]
+        public async Task<ActionResult<IEnumerable<Product>>> Get(int unitId)
         {
-            return db.Units.ToList();
+            var products = (await db.Units.FirstAsync(x => x.Id == unitId)).Products;
+            if (products == null || products.Count == 0)
+                products = await db.Products.ToListAsync();
+            return Ok(products);
         }
-
-        [HttpGet("{categoryId}")]
-        public async Task<ActionResult<IEnumerable<Unit>>> Get(int categoryId)
-        {
-            var units = await db.Categories
-                .Where(x => x.Id == categoryId)
-                .Select(x => x.Units)
-                .ToListAsync();
-            if (units != null && units.Count != 0)
-                return new ObjectResult(units);
-            return NotFound();                
-        }
+        //[HttpGet("{unitId}")]
+        //public ActionResult<IEnumerable<Unit>> Get([FromRoute]int unitId)
+        //{
+        //    return LocalRedirectPermanent($"~/api/products?unitId={unitId}");
+        //}
 
         [HttpPost]
         public IActionResult Post(Category category)
