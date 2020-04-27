@@ -22,39 +22,34 @@ namespace Zapchastulkin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Product product)
+        public async Task<ActionResult> Post(Product product)
         {
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return Ok(product);
             }
             return BadRequest(ModelState);
         }
 
         [HttpPut]
-        public IActionResult Put(Product product)
+        public async Task<ActionResult> Put(Product product)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 db.Update(product);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return Ok(product);
             }
             return BadRequest(ModelState);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            Product product = db.Products.FirstOrDefault(x => x.Id == id);
-            if (product != null)
-            {
-                db.Products.Remove(product);
-                db.SaveChanges();
-            }
-            return Ok(product);
+            await db.DeleteProduct(id);
+            return Ok();
         }
     }
 }

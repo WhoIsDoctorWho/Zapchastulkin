@@ -47,9 +47,9 @@ namespace Zapchastulkin.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            throw new System.NotImplementedException();
+            await db.DeleteUnit(id);
             return Ok();
         }
     }
