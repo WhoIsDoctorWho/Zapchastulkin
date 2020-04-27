@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Zapchastulkin.Models;
 
 namespace Zapchastulkin.Controllers
@@ -14,7 +13,7 @@ namespace Zapchastulkin.Controllers
         ApplicationContext db;
         public ProductController(ApplicationContext context)
         {
-            db = context;            
+            db = context;
         }
         [HttpGet("{productId}")]
         public async Task<ActionResult<Product>> Get(int productId)
