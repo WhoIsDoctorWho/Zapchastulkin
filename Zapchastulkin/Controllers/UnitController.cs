@@ -25,13 +25,19 @@ namespace Zapchastulkin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(Unit unit)
+        public async Task<ActionResult> Post(Unit unit, string categoryName)
         {
             if (ModelState.IsValid)
             {
-                db.Units.Add(unit);
-                await db.SaveChangesAsync();
-                return Ok(unit);
+                Category category = await db.Categories.FirstOrDefaultAsync(category => category.Name == categoryName);
+                if (category != null)
+                {
+                    category.Units.Add(unit);
+                    db.Categories.Update(category);
+                    db.Units.Add(unit);
+                    await db.SaveChangesAsync();
+                    return Ok(unit);
+                }
             }
             return BadRequest(ModelState);
         }

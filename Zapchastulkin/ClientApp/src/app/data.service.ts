@@ -1,44 +1,65 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Product } from './models/product';
+import { Category } from './models/category';
+import { Unit } from './models/unit';
 
 @Injectable()
 export class DataService {
 
-    private api = '/api';
+    private productsUrl = '/api/products';
+    private unitsUrl = '/api/units';
+    private categoriesUrl = '/api/categories';     
+    private uploadFilesUrl = '/api/upload';     
 
     constructor(private http: HttpClient) {
     }
 
-    getCategories() {
-        return this.http.get(this.api + '/categories');
+    createProduct(product: Product, unitName: string) {
+        return this.http.post(this.productsUrl, { product, unitName });
+    }
+    createUnit(unit: Unit, categoryName: string) {
+        return this.http.post(this.unitsUrl, { unit, categoryName });
+    }
+    createCategory(category: Category) {
+        return this.http.post(this.categoriesUrl, category);
+    }
+
+    getProduct(productId: number) {
+        return this.http.get(this.productsUrl + '/' + productId);
+    }
+    getProducts(unitId: number) {
+        return this.http.get(this.unitsUrl + '/' + unitId);
     }
     getUnits(categoryId: number) {
-        return this.http.get(this.api + '/categories/' + categoryId);
-        //return this.http.get("api/categories");        
-    }    
-    getProducts(unitId: number) {
-        return this.http.get(this.api + '/units/' + unitId);
+        return this.http.get(this.categoriesUrl + '/' + categoryId);
     }
-    getProduct(productId: number) {
-        return this.http.get(this.api + '/products/' + productId);
+    getCategories() {
+        return this.http.get(this.categoriesUrl);
     }
 
-    //getProducts() {
-    //    return this.http.get(this.url);
-    //}
+    updateProduct(product: Product, unitName: string) {
+        return this.http.put(this.productsUrl, { product, unitName });
+    }
+    updateUnit(unit: Unit, categoryName: string) {
+        return this.http.post(this.unitsUrl, { unit, categoryName });
+    }
+    updateCategory(category: Category) {
+        return this.http.post(this.categoriesUrl, category);
+    }
 
-    //getProduct(id: number) {
-    //    return this.http.get(this.url + '/' + id);
-    //}
 
-    //createProduct(product: Product) {
-    //    return this.http.post(this.url, product);
-    //}
-    //updateProduct(product: Product) {
+    deleteProduct(id: number) {
+        return this.http.delete(this.productsUrl + '/' + id);
+    }
+    deleteUnit(id: number) {
+        return this.http.delete(this.unitsUrl + '/' + id);
+    }
+    deleteCategory(id: number) {
+        return this.http.delete(this.categoriesUrl + '/' + id);
+    }
 
-    //    return this.http.put(this.url, product);
-    //}
-    //deleteProduct(id: number) {
-    //    return this.http.delete(this.url + '/' + id);
-    //}
+    uploadPhoto(fd: FormData) {
+        return this.http.post(this.uploadFilesUrl, fd);
+    }        
 }

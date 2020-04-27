@@ -23,7 +23,7 @@ namespace Zapchastulkin
             string connection = Configuration.GetConnectionString("DefaultConnection");            
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
 
-            services.AddControllers();
+            services.AddControllers();            
 
             services.AddSpaStaticFiles(configuration =>
             {
