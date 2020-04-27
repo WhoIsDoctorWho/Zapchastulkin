@@ -25,23 +25,25 @@ namespace Zapchastulkin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Category category)
+        public async Task<ActionResult> Post(Unit unit)
         {
-            throw new System.NotImplementedException();
             if (ModelState.IsValid)
             {
-                return Ok();
+                db.Units.Add(unit);
+                await db.SaveChangesAsync();
+                return Ok(unit);
             }
             return BadRequest(ModelState);
         }
 
         [HttpPut]
-        public IActionResult Put(Category category)
+        public async Task<ActionResult> Put(Unit unit)
         {
-            throw new System.NotImplementedException();
             if (ModelState.IsValid)
-            {
-                return Ok();
+            {                
+                db.Units.Update(unit);
+                await db.SaveChangesAsync();
+                return Ok(unit);
             }
             return BadRequest(ModelState);
         }

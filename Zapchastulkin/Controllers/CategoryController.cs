@@ -29,27 +29,27 @@ namespace Zapchastulkin.Controllers
             return Ok(units);
         }
         [HttpPost]
-        public IActionResult Post(Category category)
+        public async Task<ActionResult> Post(Category category)
         {
-            throw new System.NotImplementedException();
             if (ModelState.IsValid)
-            {
-                return Ok();
+            {                
+                db.Categories.Add(category);
+                await db.SaveChangesAsync();
+                return Ok(category);
             }
             return BadRequest(ModelState);
         }
-
         [HttpPut]
-        public IActionResult Put(Category category)
+        public async Task<ActionResult> Put(Category category)
         {
-            throw new System.NotImplementedException();
             if (ModelState.IsValid)
             {
-                return Ok();
+                db.Categories.Add(category);
+                await db.SaveChangesAsync();
+                return Ok(category);
             }
             return BadRequest(ModelState);
         }
-
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
