@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class DataService {
 
-    private api = "/api";
+    private api = '/api';
 
     constructor(private http: HttpClient) {
     }
@@ -14,7 +14,8 @@ export class DataService {
     }
     getUnits(categoryId: number) {
         return this.http.get(this.api + '/categories/' + categoryId);
-    }
+        //return this.http.get("api/categories");        
+    }    
     getProducts(unitId: number) {
         return this.http.get(this.api + '/units/' + unitId);
     }

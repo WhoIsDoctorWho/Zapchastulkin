@@ -24,11 +24,6 @@ namespace Zapchastulkin.Controllers
                 products = await db.Products.ToListAsync();
             return Ok(products);
         }
-        //[HttpGet("{unitId}")]
-        //public ActionResult<IEnumerable<Unit>> Get([FromRoute]int unitId)
-        //{
-        //    return LocalRedirectPermanent($"~/api/products?unitId={unitId}");
-        //}
 
         [HttpPost]
         public IActionResult Post(Category category)

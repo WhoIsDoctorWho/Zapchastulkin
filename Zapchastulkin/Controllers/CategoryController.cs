@@ -8,12 +8,12 @@ using Zapchastulkin.Models;
 namespace Zapchastulkin.Controllers
 {
     [ApiController]
-    [Route("api/categories")]    
+    [Route("api/categories")]
     public class CategoryController : Controller
     {
         ApplicationContext db;
         public CategoryController(ApplicationContext context)
-        {            
+        {
             db = context;
         }
         [HttpGet]
@@ -21,16 +21,14 @@ namespace Zapchastulkin.Controllers
         {
             return await db.Categories.ToListAsync();
         }
-
         [HttpGet("{categoryId}")]
         public async Task<ActionResult<IEnumerable<Unit>>> Get(int categoryId)
-        {           
+        {
             var units = (await db.Categories.FirstAsync(x => x.Id == categoryId)).Units;
             if (units == null || units.Count == 0)
                 units = await db.Units.ToListAsync();
-            return Ok(units);            
+            return Ok(units);
         }
-
         [HttpPost]
         public IActionResult Post(Category category)
         {

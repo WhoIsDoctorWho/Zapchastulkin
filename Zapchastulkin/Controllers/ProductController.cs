@@ -16,15 +16,6 @@ namespace Zapchastulkin.Controllers
         {
             db = context;            
         }
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Product>>> Get([FromQuery] int unitId)
-        //{
-        //    var products = (await db.Units.FirstAsync(x => x.Id == unitId)).Products;
-        //    if (products == null || products.Count == 0)
-        //        products = await db.Products.ToListAsync();
-        //    return Ok(products);
-        //}
-
         [HttpGet("{productId}")]
         public async Task<ActionResult<Product>> Get(int productId)
         {

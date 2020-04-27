@@ -2,7 +2,7 @@
 
 export class Category {
     public id ?: number;
-    public Name ?: string;
-    public ImageUrl?: string;    
+    public name ?: string;
+    public imageUrl?: string;    
     public units?: Unit[];
 }
