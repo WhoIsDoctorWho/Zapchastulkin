@@ -10,23 +10,23 @@ export class DataService {
     private productsUrl = '/api/products';
     private unitsUrl = '/api/units';
     private categoriesUrl = '/api/categories';     
-    private uploadFilesUrl = '/api/upload';     
+    private uploadFilesUrl = '/api/upload';      
 
     constructor(private http: HttpClient) {
-    }
+    } 
 
-    createProduct(product: Product, unitName: string) {
-        return this.http.post(this.productsUrl, { product, unitName });
+    createProduct(product: Product) {
+        return this.http.post(this.productsUrl, product);
     }
-    createUnit(unit: Unit, categoryName: string) {
-        return this.http.post(this.unitsUrl, { unit, categoryName });
+    createUnit(unit: Unit) {
+        return this.http.post(this.unitsUrl, unit);
     }
-    createCategory(category: Category) {
+    createCategory(category: Category) { 
         return this.http.post(this.categoriesUrl, category);
     }
 
     getProduct(productId: number) {
-        return this.http.get(this.productsUrl + '/' + productId);
+        return this.http.get(this.productsUrl + '/'  + productId);
     }
     getProducts(unitId: number) {
         return this.http.get(this.unitsUrl + '/' + unitId);

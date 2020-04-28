@@ -22,11 +22,11 @@ namespace Zapchastulkin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(Product product, string unitName)
+        public async Task<ActionResult> Post(Product product)
         {
             if (ModelState.IsValid)
             {
-                Unit unit = await db.Units.FirstOrDefaultAsync(unit => unit.Name == unitName);
+                Unit unit = await db.Units.FirstOrDefaultAsync(unit => unit.Name == "@todo");
                 if (unit != null) {
                     unit.Products.Add(product);
                     db.Units.Update(unit);

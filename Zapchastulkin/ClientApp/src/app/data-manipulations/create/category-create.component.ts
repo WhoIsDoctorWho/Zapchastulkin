@@ -9,17 +9,16 @@ import { Category } from '../../models/category';
 export class CategoryCreateComponent {
     category: Category = new Category();
     file: FormData = new FormData();
-
+     
     constructor(private dataService: DataService, private router: Router) { }
 
     save() {
         this.dataService.uploadPhoto(this.file)
             .subscribe(data => {
-                this.category.imageUrl = data.img;
+                this.category.imageUrl = data.img; 
                 return this.dataService.createCategory(this.category).subscribe(data => {
                     return this.router.navigateByUrl("/");
                 })
-            });
-
+            });         
     }
-}
+} 

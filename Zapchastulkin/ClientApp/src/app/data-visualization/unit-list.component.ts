@@ -17,7 +17,7 @@ export class UnitListComponent implements OnInit {
         this.categoryId = Number.parseInt(activeRoute.snapshot.params["id"]);
     }    
     ngOnInit() {
-        if (this.categoryId)
+        if (this.categoryId)   
             this.dataService.getUnits(this.categoryId)
                 .subscribe((data: Unit[]) => { this.units = data; this.loaded = true; });
     }    

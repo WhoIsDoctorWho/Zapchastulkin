@@ -3,6 +3,7 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
 
 namespace Zapchastulkin.Controllers
 {
@@ -11,14 +12,15 @@ namespace Zapchastulkin.Controllers
     public class ImageUploadController : Controller
     {
         [HttpPost]
-        public IActionResult Post()
+        public async Task<ActionResult> Post()
         {
             IFormFile file = Request.Form.Files[0];
-            IConfiguration config = new ConfigurationBuilder().AddJsonFile("../appsettings.json").Build();
+            
+            IConfiguration config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             Account account = new Account( 
                 config["cloudinary:CloudName"],
                 config["cloudinary:Key"],
-                config["cloudinary:Secret"]);
+                config["cloudinary:Secret"]);                        
             Cloudinary cloudinary = new Cloudinary(account);
             var uploadParams = new ImageUploadParams()
             {
@@ -26,7 +28,7 @@ namespace Zapchastulkin.Controllers
                 Folder = "Zapchastulkin",
                 Transformation = new Transformation().Width(220).Height(520).Crop("pad")
             };
-            ImageUploadResult uploadResult = cloudinary.Upload(uploadParams);
+            ImageUploadResult uploadResult = await cloudinary.UploadAsync(uploadParams);
             return Ok(new { img = uploadResult.SecureUri });
         }
     }

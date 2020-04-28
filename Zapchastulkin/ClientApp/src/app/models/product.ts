@@ -1,6 +1,6 @@
 ﻿export class Product {    
     public id ?: number;
-    public name ?: string;
+    public name ?: string; 
     public imageUrl ?: string;
     public price ?: number;
     public brand ?: string;

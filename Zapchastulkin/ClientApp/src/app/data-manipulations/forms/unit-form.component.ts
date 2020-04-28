@@ -12,6 +12,7 @@ export class UnitFormComponent {
 
     @Input() unit: Unit;
     @Input() file: FormData = new FormData();
+    
     categories: Category[];
 
     constructor(private dataService: DataService) { }

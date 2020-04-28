@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { DataService } from '../../data.service';
 import { Product } from '../../models/product';
 
-@Component({
+@Component({ 
     templateUrl: './product-create.component.html'
 })
 export class ProductCreateComponent {
