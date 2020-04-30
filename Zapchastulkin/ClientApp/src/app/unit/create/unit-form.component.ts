@@ -11,19 +11,18 @@ import { CategoryService } from '../../services/category.service';
 export class UnitFormComponent {
 
     @Input() unit: Unit;
-    @Input() file: FormData = new FormData();
     
     categories: Category[];
 
     constructor(private categoryService: CategoryService) { }
+
     ngOnInit() {
         this.load();
     }
     load() {
         this.categoryService.getCategories().subscribe((data: Category[]) => this.categories = data);
     }  
-    onFileSelected(event) {
-        const f: File = <File>event.target.files[0];
-        this.file.append('image', f, f.name);
+    setImageUrl(path: string) {
+        this.unit.imageUrl = path;
     }
 }

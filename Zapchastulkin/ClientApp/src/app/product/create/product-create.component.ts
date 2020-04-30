@@ -2,27 +2,18 @@
 import { Router } from '@angular/router';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
-import { FileService } from '../../services/file.service';
 
 @Component({ 
     templateUrl: './product-create.component.html',
-    providers: [ProductService, FileService]
+    providers: [ProductService]
 })
 export class ProductCreateComponent {
     product: Product = new Product();
-    file: FormData = new FormData();
 
-    constructor(private productService: ProductService, private fileService: FileService, private router: Router) { }
+    constructor(private productService: ProductService, private router: Router) { }
 
-    save() {
-        this.fileService.uploadPhoto(this.file)
-            .subscribe(data => {
-                this.product.imageUrl = data.toString();
-                this.product.unitId = +this.product.unitId;
-                return this.productService.createProduct(this.product).subscribe(data => {
-                    return this.router.navigateByUrl("/");
-                })
-            });
-
+    save() {        
+        this.product.unitId = +this.product.unitId;
+        return this.productService.createProduct(this.product).subscribe(() => this.router.navigateByUrl("/"));               
     }
 }

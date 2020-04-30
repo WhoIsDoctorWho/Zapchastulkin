@@ -39,7 +39,7 @@ const appRoutes: Routes = [
     { path: 'products/:id', component: ProductDetailComponent },
     { path: 'about', component: AboutComponent },
     { path: '**', component: NotFoundComponent }
-];
+]; 
 
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot(appRoutes)],

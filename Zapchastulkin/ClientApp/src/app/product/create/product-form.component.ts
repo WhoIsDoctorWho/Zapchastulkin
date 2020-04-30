@@ -11,18 +11,17 @@ import { UnitService } from '../../services/unit.service';
 export class ProductFormComponent {
 
     @Input() product: Product;
-    @Input() file: FormData = new FormData();
     units: Unit[];
 
     constructor(private unitService: UnitService) { }
+
     ngOnInit() { 
         this.load();
     }
     load() {
         this.unitService.getUnits().subscribe((data: Unit[]) => this.units = data);
     } 
-    onFileSelected(event) {
-        const f: File = <File>event.target.files[0];
-        this.file.append('image', f, f.name); 
+    setImageUrl(path: string) {
+        this.product.imageUrl = path;
     }
 }
