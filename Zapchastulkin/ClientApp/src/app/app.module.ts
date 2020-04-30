@@ -6,13 +6,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CategoryListComponent } from './data-visualization/category-list.component';
-
+ 
 import { CategoryCreateComponent } from './data-manipulations/create/category-create.component';
 import { CategoryFormComponent } from './data-manipulations/forms/category-form.component';
-
+ 
 import { UnitCreateComponent } from './data-manipulations/create/unit-create.component';
 import { UnitFormComponent } from './data-manipulations/forms/unit-form.component';
-
+ 
 import { ProductCreateComponent } from './data-manipulations/create/product-create.component';
 import { ProductFormComponent } from './data-manipulations/forms/product-form.component';
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Zapchastulkin.Models;
@@ -15,21 +16,23 @@ namespace Zapchastulkin.Controllers
         {
             db = context;
         }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Product>>> Get()
+        {
+            return Ok(await db.Products.ToListAsync());
+        }
         [HttpGet("{productId}")]
         public async Task<ActionResult<Product>> Get(int productId)
         {
             return await db.Products.FirstAsync(x => x.Id == productId);
         }
-
         [HttpPost]
         public async Task<ActionResult> Post(Product product)
         {
             if (ModelState.IsValid)
             {
-                Unit unit = await db.Units.FirstOrDefaultAsync(unit => unit.Name == "@todo");
-                if (unit != null) {
-                    unit.Products.Add(product);
-                    db.Units.Update(unit);
+                Unit unit = await db.Units.FirstOrDefaultAsync(unit => unit.Id == product.UnitId);
+                if (unit != null) {                    
                     db.Products.Add(product);
                     await db.SaveChangesAsync();
                     return Ok(product);
@@ -53,7 +56,7 @@ namespace Zapchastulkin.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            await db.DeleteProduct(id);
+            await db.DeleteProductAsync(id);
             return Ok();
         }
     }

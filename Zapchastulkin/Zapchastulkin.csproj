@@ -13,6 +13,9 @@
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
       
   </ItemGroup><ItemGroup>
+  <Compile Remove="Migrations\20200429082904_GetFK.cs" />
+  <Compile Remove="Migrations\20200429082904_GetFK.Designer.cs" />
+</ItemGroup><ItemGroup>
   <None Remove="ClientApp\src\app\data-manipulations\category-form.component.ts" />
   <None Remove="ClientApp\src\app\data-manipulations\create\category-create.component.ts" />
   <None Remove="ClientApp\src\app\data-manipulations\create\product-create.component.ts" />
@@ -28,10 +31,17 @@
   <None Remove="ClientApp\src\app\models\category.ts" />
   <None Remove="ClientApp\src\app\models\product.ts" />
   <None Remove="ClientApp\src\app\models\unit.ts" />
+  <None Remove="ClientApp\src\app\services\category.service.ts" />
+  <None Remove="ClientApp\src\app\services\file.service.ts" />
+  <None Remove="ClientApp\src\app\services\product.service.ts" />
+  <None Remove="ClientApp\src\app\services\unit.service.ts" />
 </ItemGroup> 
    
     <ItemGroup>
-        <PackageReference Include="CloudinaryDotNet" Version="1.10.0" /><PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" /><PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" /><PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.3" />
+        <PackageReference Include="CloudinaryDotNet" Version="1.10.0" /><PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" /><PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" /><PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
+  <PrivateAssets>all</PrivateAssets>
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+</PackageReference><PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.3" />
       
   </ItemGroup><ItemGroup>
   <TypeScriptCompile Include="ClientApp\src\app\data-manipulations\create\category-create.component.ts" />
@@ -55,6 +65,10 @@
   <TypeScriptCompile Include="ClientApp\src\app\models\category.ts" />
   <TypeScriptCompile Include="ClientApp\src\app\models\product.ts" />
   <TypeScriptCompile Include="ClientApp\src\app\models\unit.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\services\category.service.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\services\file.service.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\services\product.service.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\services\unit.service.ts" />
 </ItemGroup>
    
     <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">

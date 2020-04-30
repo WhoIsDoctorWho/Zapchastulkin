@@ -15,7 +15,7 @@ export class ProductFormComponent {
     units: Unit[];
 
     constructor(private dataService: DataService) { }
-    ngOnInit() {
+    ngOnInit() { 
         this.load();
     }
     load() {
@@ -23,6 +23,6 @@ export class ProductFormComponent {
     } 
     onFileSelected(event) {
         const f: File = <File>event.target.files[0];
-        this.file.append('image', f, f.name);
+        this.file.append('image', f, f.name); 
     }
 }

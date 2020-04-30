@@ -5,5 +5,6 @@
     public price ?: number;
     public brand ?: string;
     public vendor ?: string;
-    public description ?: string;
+    public description?: string;
+    public unitId?: number;
 }

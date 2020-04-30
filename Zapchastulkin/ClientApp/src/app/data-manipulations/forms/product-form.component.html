@@ -1,4 +1,6 @@
-﻿<!-- select unit -->
+﻿<select *ngFor="let unit of units" [(ngModel)]="product.unitId">
+    <option value="{{unit?.id}}">{{unit?.name}}</option>
+</select>
 <div class="form-group">
     <label>Название</label>
     <input type="text" [(ngModel)]="product.name" class="form-control" />

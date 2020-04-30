@@ -11,9 +11,9 @@ namespace Zapchastulkin.Models
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
-        public async Task DeleteCategory(int id)
+        public async Task DeleteCategoryAsync(int id)
         {
             Category category = await Categories.FirstOrDefaultAsync(category => category.Id == id);
             if(category != null)
@@ -22,7 +22,7 @@ namespace Zapchastulkin.Models
                 await SaveChangesAsync();
             }
         }
-        public async Task DeleteUnit(int id)
+        public async Task DeleteUnitAsync(int id)
         {
             Unit unit = await Units.FirstOrDefaultAsync(unit => unit.Id == id);
             if(unit != null)
@@ -31,7 +31,7 @@ namespace Zapchastulkin.Models
                 await SaveChangesAsync();
             }
         }
-        public async Task DeleteProduct(int id)
+        public async Task DeleteProductAsync(int id)
         {
             Product product = await Products.FirstOrDefaultAsync(product => product.Id == id);
             if (product != null)

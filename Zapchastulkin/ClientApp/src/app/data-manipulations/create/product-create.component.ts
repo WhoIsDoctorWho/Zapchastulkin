@@ -16,6 +16,7 @@ export class ProductCreateComponent {
         this.dataService.uploadPhoto(this.file)
             .subscribe(data => {
                 this.product.imageUrl = data.img;
+                this.product.unitId = +this.product.unitId;
                 return this.dataService.createProduct(this.product).subscribe(data => {
                     return this.router.navigateByUrl("/");
                 })

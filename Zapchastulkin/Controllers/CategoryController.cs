@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Zapchastulkin.Models;
 
@@ -18,13 +19,13 @@ namespace Zapchastulkin.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> Get()
         {
-            return await db.Categories.ToListAsync();
+            return Ok(await db.Categories.ToListAsync());
         }
         [HttpGet("{categoryId}")]
         public async Task<ActionResult<IEnumerable<Unit>>> Get(int categoryId)
         {
-            var units = (await db.Categories.FirstAsync(x => x.Id == categoryId)).Units;
-            if (units == null || units.Count == 0)
+            var units = (await db.Categories.FirstOrDefaultAsync(x => x.Id == categoryId))?.Units;
+            if (units == null || !units.Any())
                 units = await db.Units.ToListAsync();
             return Ok(units);
         }
@@ -53,7 +54,7 @@ namespace Zapchastulkin.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            await db.DeleteCategory(id);
+            await db.DeleteCategoryAsync(id);
             return Ok();
         }
     }

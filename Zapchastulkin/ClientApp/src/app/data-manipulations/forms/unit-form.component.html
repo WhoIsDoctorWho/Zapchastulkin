@@ -1,9 +1,4 @@
-﻿<!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">    
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-</div>-->
-<select *ngFor="let category of categories" [(ngModel)]="unit.categoryFK">
+﻿<select *ngFor="let category of categories" [(ngModel)]="unit.categoryId">
     <option value="{{category?.id}}">{{category?.name}}</option>
 </select>
 <div class="form-group">

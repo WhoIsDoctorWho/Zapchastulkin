@@ -10,17 +10,17 @@ import { Product } from '../../models/product';
 export class UnitCreateComponent {
     unit: Unit = new Unit();
     file: FormData = new FormData();
-
+ 
     constructor(private dataService: DataService, private router: Router) { }
 
     save() {
         this.dataService.uploadPhoto(this.file)
             .subscribe(data => { 
                 this.unit.imageUrl = data.img;
-                this.unit.products = null;
+                this.unit.categoryId = +this.unit.categoryId;                 
                 return this.dataService.createUnit(this.unit).subscribe(data => {
                     return this.router.navigateByUrl("/");
                 })
             });
-    }
+    } 
 } 

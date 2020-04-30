@@ -21,7 +21,7 @@ export class UnitFormComponent {
     }
     load() {
         this.dataService.getCategories().subscribe((data: Category[]) => this.categories = data);
-    } 
+    }  
     onFileSelected(event) {
         const f: File = <File>event.target.files[0];
         this.file.append('image', f, f.name);

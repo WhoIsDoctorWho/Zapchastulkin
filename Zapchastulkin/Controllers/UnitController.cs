@@ -15,25 +15,27 @@ namespace Zapchastulkin.Controllers
         {
             db = context;
         }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Unit>>> Get()
+        {
+            return Ok(await db.Units.ToListAsync());
+        }
         [HttpGet("{unitId}")]
         public async Task<ActionResult<IEnumerable<Product>>> Get(int unitId)
         {
-            var products = (await db.Units.FirstAsync(x => x.Id == unitId)).Products;
+            var products = (await db.Units.FirstOrDefaultAsync(x => x.Id == unitId))?.Products;
             if (products == null || products.Count == 0)
                 products = await db.Products.ToListAsync();
             return Ok(products);
         }
-
         [HttpPost]
         public async Task<IActionResult> Post(Unit unit)
         {            
             if (ModelState.IsValid)
             {
-                Category category = await db.Categories.FirstOrDefaultAsync(category => category.Name == "ss");
+                Category category = await db.Categories.FirstOrDefaultAsync(category => category.Id == unit.CategoryId);
                 if (category != null)
                 {
-                    category.Units.Add(unit);
-                    db.Categories.Update(category);
                     db.Units.Add(unit);
                     await db.SaveChangesAsync();
                     return Ok(unit);
@@ -57,7 +59,7 @@ namespace Zapchastulkin.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            await db.DeleteUnit(id);
+            await db.DeleteUnitAsync(id);
             return Ok();
         }
     }

@@ -13,7 +13,7 @@ export class DataService {
     private uploadFilesUrl = '/api/upload';      
 
     constructor(private http: HttpClient) {
-    } 
+    }  
 
     createProduct(product: Product) {
         return this.http.post(this.productsUrl, product);
