@@ -12,7 +12,7 @@ namespace Zapchastulkin.Controllers
     public class ImageUploadController : Controller
     {
         [HttpPost]
-        public async Task<ActionResult> Post()
+        public async Task<ActionResult<string>> Post()
         {
             IFormFile file = Request.Form.Files[0];
             
@@ -29,7 +29,7 @@ namespace Zapchastulkin.Controllers
                 Transformation = new Transformation().Width(220).Height(520).Crop("pad")
             };
             ImageUploadResult uploadResult = await cloudinary.UploadAsync(uploadParams);
-            return Ok(new { img = uploadResult.SecureUri });
+            return Ok(uploadResult.SecureUri);
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿import { Component, Input } from '@angular/core';
 import { Unit } from '../../models/unit';
 import { Category } from '../../models/category';
-import { DataService } from '../../data.service';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
     selector: "unit-form",
     templateUrl: './unit-form.component.html',
-    providers: [DataService]
+    providers: [CategoryService]
 })
 export class UnitFormComponent {
 
@@ -15,12 +15,12 @@ export class UnitFormComponent {
     
     categories: Category[];
 
-    constructor(private dataService: DataService) { }
+    constructor(private categoryService: CategoryService) { }
     ngOnInit() {
         this.load();
     }
     load() {
-        this.dataService.getCategories().subscribe((data: Category[]) => this.categories = data);
+        this.categoryService.getCategories().subscribe((data: Category[]) => this.categories = data);
     }  
     onFileSelected(event) {
         const f: File = <File>event.target.files[0];

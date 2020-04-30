@@ -16,18 +16,7 @@
   <Compile Remove="Migrations\20200429082904_GetFK.cs" />
   <Compile Remove="Migrations\20200429082904_GetFK.Designer.cs" />
 </ItemGroup><ItemGroup>
-  <None Remove="ClientApp\src\app\data-manipulations\category-form.component.ts" />
-  <None Remove="ClientApp\src\app\data-manipulations\create\category-create.component.ts" />
-  <None Remove="ClientApp\src\app\data-manipulations\create\product-create.component.ts" />
-  <None Remove="ClientApp\src\app\data-manipulations\create\unit-create.component.ts" />
-  <None Remove="ClientApp\src\app\data-manipulations\product-form.component.ts" />
-  <None Remove="ClientApp\src\app\data-manipulations\unit-form.component.ts" />
-  <None Remove="ClientApp\src\app\data-manipulations\update\category-update.component.ts" />
-  <None Remove="ClientApp\src\app\data-manipulations\update\product-update.component.ts" />
-  <None Remove="ClientApp\src\app\data-manipulations\update\unit-update.component.ts" />
-  <None Remove="ClientApp\src\app\data-visualization\product-detail.component.ts" />
-  <None Remove="ClientApp\src\app\data-visualization\product-list.component.ts" />
-  <None Remove="ClientApp\src\app\data.service.ts" />
+  <None Remove="ClientApp\src\app\common-modules\get-image.component.ts" />
   <None Remove="ClientApp\src\app\models\category.ts" />
   <None Remove="ClientApp\src\app\models\product.ts" />
   <None Remove="ClientApp\src\app\models\unit.ts" />
@@ -38,30 +27,35 @@
 </ItemGroup> 
    
     <ItemGroup>
-        <PackageReference Include="CloudinaryDotNet" Version="1.10.0" /><PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" /><PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" /><PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
+        <PackageReference Include="CloudinaryDotNet" Version="1.10.0" /><PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.3" /><PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" /><PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
   <PrivateAssets>all</PrivateAssets>
   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-</PackageReference><PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.3" />
+</PackageReference><PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.3" /><PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.8.3">
+  <PrivateAssets>all</PrivateAssets>
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+</PackageReference>
       
   </ItemGroup><ItemGroup>
-  <TypeScriptCompile Include="ClientApp\src\app\data-manipulations\create\category-create.component.ts" />
-  <TypeScriptCompile Include="ClientApp\src\app\data-manipulations\create\product-create.component.ts" />
-  <TypeScriptCompile Include="ClientApp\src\app\data-manipulations\create\unit-create.component.ts" />
-  <TypeScriptCompile Include="ClientApp\src\app\data-manipulations\forms\category-form.component.ts" />
-  <TypeScriptCompile Include="ClientApp\src\app\data-manipulations\forms\product-form.component.ts" />
-  <TypeScriptCompile Include="ClientApp\src\app\data-manipulations\forms\unit-form.component.ts" />
-  <TypeScriptCompile Include="ClientApp\src\app\data-manipulations\update\category-update.component.ts">
+  <TypeScriptCompile Include="ClientApp\src\app\common-modules\get-image.component.ts">
     <SubType>Code</SubType>
   </TypeScriptCompile>
-  <TypeScriptCompile Include="ClientApp\src\app\data-manipulations\update\product-update.component.ts">
+  <TypeScriptCompile Include="ClientApp\src\app\category\create\category-create.component.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\product\create\product-create.component.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\unit\create\unit-create.component.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\category\create\category-form.component.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\product\create\product-form.component.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\unit\create\unit-form.component.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\category\update\category-update.component.ts">
     <SubType>Code</SubType>
   </TypeScriptCompile>
-  <TypeScriptCompile Include="ClientApp\src\app\data-manipulations\update\unit-update.component.ts">
+  <TypeScriptCompile Include="ClientApp\src\app\product\update\product-update.component.ts">
     <SubType>Code</SubType>
   </TypeScriptCompile>
-  <TypeScriptCompile Include="ClientApp\src\app\data-visualization\product-detail.component.ts" />
-  <TypeScriptCompile Include="ClientApp\src\app\data-visualization\product-list.component.ts" />
-  <TypeScriptCompile Include="ClientApp\src\app\data.service.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\unit\update\unit-update.component.ts">
+    <SubType>Code</SubType>
+  </TypeScriptCompile>
+  <TypeScriptCompile Include="ClientApp\src\app\product\read\product-detail.component.ts" />
+  <TypeScriptCompile Include="ClientApp\src\app\product\read\product-list.component.ts" />
   <TypeScriptCompile Include="ClientApp\src\app\models\category.ts" />
   <TypeScriptCompile Include="ClientApp\src\app\models\product.ts" />
   <TypeScriptCompile Include="ClientApp\src\app\models\unit.ts" />

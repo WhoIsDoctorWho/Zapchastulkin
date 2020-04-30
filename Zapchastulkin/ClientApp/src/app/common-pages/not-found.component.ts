@@ -3,4 +3,4 @@
 @Component({
     templateUrl: 'not-found.component.html'
 })
-export class NotFoundComponent { }
+export class NotFoundComponent { } 
