@@ -23,10 +23,12 @@ namespace Zapchastulkin.Controllers
         [HttpGet("{unitId}")]
         public async Task<ActionResult<IEnumerable<Product>>> Get(int unitId)
         {
-            var products = (await db.Units.FirstOrDefaultAsync(x => x.Id == unitId))?.Products;
-            if (products == null || products.Count == 0)
-                products = await db.Products.ToListAsync();
-            return Ok(products);
+            Unit unit = await db.Units
+                .Include(unit => unit.Products)
+                .FirstOrDefaultAsync(unit => unit.Id == unitId);
+            if (unit == null)
+                NotFound();
+            return Ok(unit);
         }
         [HttpPost]
         public async Task<IActionResult> Post(Unit unit)
@@ -48,8 +50,8 @@ namespace Zapchastulkin.Controllers
         public async Task<ActionResult> Put(Unit unit)
         {
             if (ModelState.IsValid)
-            {                
-                db.Units.Update(unit);
+            {
+                db.Update(unit);
                 await db.SaveChangesAsync();
                 return Ok(unit);
             }

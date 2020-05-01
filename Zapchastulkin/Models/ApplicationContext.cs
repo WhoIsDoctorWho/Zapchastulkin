@@ -11,6 +11,8 @@ namespace Zapchastulkin.Models
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
+            //Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
         public async Task DeleteCategoryAsync(int id)
         {

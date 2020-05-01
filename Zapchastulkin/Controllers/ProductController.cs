@@ -46,7 +46,7 @@ namespace Zapchastulkin.Controllers
         {
             if (ModelState.IsValid)
             {                
-                db.Products.Update(product);
+                db.Update(product);
                 await db.SaveChangesAsync();
                 return Ok(product);
             }

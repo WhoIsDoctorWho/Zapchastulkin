@@ -17,12 +17,12 @@ export class CategoryService {
         return this.http.get(this.url);
     }
 
-    getUnitsFromCategory(categoryId: number) {
+    getCategory(categoryId: number) {
         return this.http.get(this.url + '/' + categoryId);
     }
 
     updateCategory(category: Category) {
-        return this.http.post(this.url, category);
+        return this.http.put(this.url, category);
     }
 
     deleteCategory(id: number) {

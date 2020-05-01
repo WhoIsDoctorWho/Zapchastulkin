@@ -6,7 +6,7 @@ import { Category } from '../../models/category';
     templateUrl: './category-form.component.html',
 })
 export class CategoryFormComponent {
-
+     
     @Input() category: Category;    
 
     setImageUrl(path: string) {

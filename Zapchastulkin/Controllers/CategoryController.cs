@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Zapchastulkin.Models;
 
@@ -23,11 +22,13 @@ namespace Zapchastulkin.Controllers
         }
         [HttpGet("{categoryId}")]
         public async Task<ActionResult<IEnumerable<Unit>>> Get(int categoryId)
-        {
-            var units = (await db.Categories.FirstOrDefaultAsync(x => x.Id == categoryId))?.Units;
-            if (units == null || !units.Any())
-                units = await db.Units.ToListAsync();
-            return Ok(units);
+        {            
+             Category category = await db.Categories
+                .Include(category => category.Units)
+                .FirstOrDefaultAsync(x => x.Id == categoryId);
+            if (category == null)
+                return NotFound();
+            return Ok(category);
         }
         [HttpPost]
         public async Task<ActionResult> Post(Category category)
@@ -44,8 +45,8 @@ namespace Zapchastulkin.Controllers
         public async Task<ActionResult> Put(Category category)
         {
             if (ModelState.IsValid)
-            {
-                db.Categories.Add(category);
+            {                
+                db.Update(category);
                 await db.SaveChangesAsync();
                 return Ok(category);
             }

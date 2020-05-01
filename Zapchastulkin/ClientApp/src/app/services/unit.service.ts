@@ -16,13 +16,13 @@ export class UnitService {
     getUnits() {
         return this.http.get(this.url);
     }
-
-    getProductsFromUnit(unitId: number) {
+    
+    getUnit(unitId: number) {
         return this.http.get(this.url + '/' + unitId);
     }
 
     updateUnit(unit: Unit) {
-        return this.http.post(this.url, unit);
+        return this.http.put(this.url, unit);
     }
     
     deleteUnit(id: number) {

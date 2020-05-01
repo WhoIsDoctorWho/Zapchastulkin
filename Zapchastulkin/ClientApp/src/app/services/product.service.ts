@@ -12,7 +12,7 @@ export class ProductService {
 
     createProduct(product: Product) {
         return this.http.post(this.url, product);
-    }
+    } 
 
     getProduct(productId: number) {
         return this.http.get(this.url + '/' + productId);

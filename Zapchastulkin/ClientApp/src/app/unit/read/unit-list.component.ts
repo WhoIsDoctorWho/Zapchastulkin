@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Unit } from '../../models/unit';
 import { UnitService } from '../../services/unit.service';
 import { CategoryService } from '../../services/category.service';
+import { Category } from '../../models/category';
 
 @Component({
     templateUrl: './unit-list.component.html',
@@ -19,8 +20,10 @@ export class UnitListComponent implements OnInit {
     }    
     ngOnInit() {
         if (this.categoryId)   
-            this.categoryService.getUnitsFromCategory(this.categoryId)
-                .subscribe((data: Unit[]) => { this.units = data; this.loaded = true; });
+            this.categoryService.getCategory(this.categoryId)
+                .subscribe((category: Category) => {
+                    this.units = category.units; this.loaded = true;
+                });
         else
             this.unitService.getUnits()
             .subscribe((data: Unit[]) => { this.units = data; this.loaded = true; });
