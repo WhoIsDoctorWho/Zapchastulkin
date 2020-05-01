@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './app.component'; 
 
 import { CategoryListComponent } from './category/read/category-list.component';
 import { CategoryCreateComponent } from './category/create/category-create.component';

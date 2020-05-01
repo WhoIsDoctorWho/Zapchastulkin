@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Zapchastulkin.Models;
+using Zapchastulkin.Services;
 
 namespace Zapchastulkin
 {
@@ -23,7 +24,9 @@ namespace Zapchastulkin
             string connection = Configuration.GetConnectionString("DefaultConnection");            
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
 
-            services.AddControllers();            
+            services.AddControllers();
+
+            services.AddTransient<CloudinaryUploadService>();
 
             services.AddSpaStaticFiles(configuration =>
             {

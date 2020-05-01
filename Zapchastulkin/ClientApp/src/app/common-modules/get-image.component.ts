@@ -9,7 +9,7 @@ import { FileService } from '../services/file.service';
 export class GetImageComponent {
 
     @Output() filepathOutput = new EventEmitter<string>();
-    //@Input() file: string;
+    
 
     constructor(private fileService: FileService) { }
 
@@ -17,6 +17,8 @@ export class GetImageComponent {
         const f: File = <File>event.target.files[0];
         const fd : FormData = new FormData();
         fd.append('image', f, f.name);        
-        this.fileService.uploadPhoto(fd).subscribe(data => this.filepathOutput.emit(data.toString()));
+        this.fileService.uploadPhoto(fd).subscribe(data => {
+            this.filepathOutput.emit(data.toString());
+        });
     }
 }
