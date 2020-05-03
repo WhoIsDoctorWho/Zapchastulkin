@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Zapchastulkin.Models;
 namespace Zapchastulkin.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/units")]
     public class UnitController : Controller
     {
@@ -16,11 +18,13 @@ namespace Zapchastulkin.Controllers
             db = context;
         }
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Unit>>> Get()
         {
             return Ok(await db.Units.ToListAsync());
         }
         [HttpGet("{unitId}")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Product>>> Get(int unitId)
         {
             Unit unit = await db.Units

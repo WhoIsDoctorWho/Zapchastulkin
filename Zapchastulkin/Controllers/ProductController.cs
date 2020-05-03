@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Zapchastulkin.Models;
 
 namespace Zapchastulkin.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/products")]
     public class ProductController : Controller
     {
@@ -17,11 +18,13 @@ namespace Zapchastulkin.Controllers
             db = context;
         }
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Product>>> Get()
         {
             return Ok(await db.Products.ToListAsync());
         }
         [HttpGet("{productId}")]
+        [AllowAnonymous]
         public async Task<ActionResult<Product>> Get(int productId)
         {
             return await db.Products.FirstAsync(x => x.Id == productId);

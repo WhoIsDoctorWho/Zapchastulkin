@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Zapchastulkin.Models;
 namespace Zapchastulkin.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/categories")]
     public class CategoryController : Controller
     {
@@ -15,12 +17,15 @@ namespace Zapchastulkin.Controllers
         {
             db = context;
         }
+
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Category>>> Get()
         {
             return Ok(await db.Categories.ToListAsync());
         }
         [HttpGet("{categoryId}")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Unit>>> Get(int categoryId)
         {            
              Category category = await db.Categories
